@@ -4,10 +4,11 @@
   "info": {
     "singularName": "client",
     "pluralName": "clients",
-    "displayName": "Client"
+    "displayName": "Client",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -15,7 +16,7 @@
       "type": "string"
     },
     "Address": {
-      "type": "string"
+      "type": "text"
     }
   }
 }

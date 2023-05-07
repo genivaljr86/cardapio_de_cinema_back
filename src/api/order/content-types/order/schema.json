@@ -4,7 +4,8 @@
   "info": {
     "singularName": "order",
     "pluralName": "orders",
-    "displayName": "Order"
+    "displayName": "Order",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,19 +17,26 @@
       "relation": "oneToOne",
       "target": "api::client.client"
     },
-    "products": {
+    "amount_price": {
+      "type": "decimal"
+    },
+    "order_details": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::product.product"
+      "target": "api::order-detail.order-detail",
+      "mappedBy": "order_id"
     },
-    "custom_price": {
-      "type": "decimal"
+    "address": {
+      "type": "string"
     },
-    "final_price": {
-      "type": "decimal"
+    "phone": {
+      "type": "string"
     },
-    "has_custom_price": {
-      "type": "boolean"
+    "name": {
+      "type": "string"
+    },
+    "delivery_date": {
+      "type": "datetime"
     }
   }
 }

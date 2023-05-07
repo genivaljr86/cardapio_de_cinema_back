@@ -12,11 +12,13 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Name": {
-      "type": "string"
+    "name": {
+      "type": "string",
+      "required": true
     },
-    "Address": {
-      "type": "text"
+    "address": {
+      "type": "text",
+      "required": true
     }
   }
 }

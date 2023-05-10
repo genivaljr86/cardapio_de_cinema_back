@@ -21,8 +21,8 @@ export interface Error {
 
 export interface ClientRequest {
   data: {
-    name?: string;
-    address?: string;
+    name: string;
+    address: string;
   };
 }
 
@@ -46,8 +46,8 @@ export interface ClientListResponse {
 }
 
 export interface Client {
-  name?: string;
-  address?: string;
+  name: string;
+  address: string;
   /** @format date-time */
   createdAt?: string;
   /** @format date-time */
@@ -172,12 +172,14 @@ export interface OrderRequest {
   data: {
     /** @example "string or id" */
     client?: number | string;
-    products?: (number | string)[];
     /** @format float */
-    custom_price?: number;
-    /** @format float */
-    final_price?: number;
-    has_custom_price?: boolean;
+    amount_price?: number;
+    order_details?: (number | string)[];
+    address?: string;
+    phone?: string;
+    name?: string;
+    /** @format date-time */
+    delivery_date?: string;
   };
 }
 
@@ -318,57 +320,452 @@ export interface Order {
       };
     };
   };
-  products?: {
+  /** @format float */
+  amount_price?: number;
+  order_details?: {
     data?: {
       id?: number;
       attributes?: {
-        name?: string;
-        /** @format float */
-        price?: number;
-        photo?: {
+        order_id?: {
           data?: {
             id?: number;
             attributes?: {
-              name?: string;
-              alternativeText?: string;
-              caption?: string;
-              width?: number;
-              height?: number;
-              formats?: any;
-              hash?: string;
-              ext?: string;
-              mime?: string;
+              client?: {
+                data?: {
+                  id?: number;
+                  attributes?: object;
+                };
+              };
               /** @format float */
-              size?: number;
-              url?: string;
-              previewUrl?: string;
-              provider?: string;
-              provider_metadata?: any;
-              related?: {
+              amount_price?: number;
+              order_details?: {
                 data?: {
                   id?: number;
                   attributes?: object;
                 }[];
               };
-              folder?: {
+              address?: string;
+              phone?: string;
+              name?: string;
+              /** @format date-time */
+              delivery_date?: string;
+              /** @format date-time */
+              createdAt?: string;
+              /** @format date-time */
+              updatedAt?: string;
+              createdBy?: {
+                data?: {
+                  id?: number;
+                  attributes?: object;
+                };
+              };
+              updatedBy?: {
+                data?: {
+                  id?: number;
+                  attributes?: object;
+                };
+              };
+            };
+          };
+        };
+        product_id?: {
+          data?: {
+            id?: number;
+            attributes?: {
+              name?: string;
+              /** @format float */
+              price?: number;
+              photo?: {
                 data?: {
                   id?: number;
                   attributes?: {
                     name?: string;
-                    pathId?: number;
-                    parent?: {
-                      data?: {
-                        id?: number;
-                        attributes?: object;
-                      };
-                    };
-                    children?: {
+                    alternativeText?: string;
+                    caption?: string;
+                    width?: number;
+                    height?: number;
+                    formats?: any;
+                    hash?: string;
+                    ext?: string;
+                    mime?: string;
+                    /** @format float */
+                    size?: number;
+                    url?: string;
+                    previewUrl?: string;
+                    provider?: string;
+                    provider_metadata?: any;
+                    related?: {
                       data?: {
                         id?: number;
                         attributes?: object;
                       }[];
                     };
-                    files?: {
+                    folder?: {
+                      data?: {
+                        id?: number;
+                        attributes?: {
+                          name?: string;
+                          pathId?: number;
+                          parent?: {
+                            data?: {
+                              id?: number;
+                              attributes?: object;
+                            };
+                          };
+                          children?: {
+                            data?: {
+                              id?: number;
+                              attributes?: object;
+                            }[];
+                          };
+                          files?: {
+                            data?: {
+                              id?: number;
+                              attributes?: {
+                                name?: string;
+                                alternativeText?: string;
+                                caption?: string;
+                                width?: number;
+                                height?: number;
+                                formats?: any;
+                                hash?: string;
+                                ext?: string;
+                                mime?: string;
+                                /** @format float */
+                                size?: number;
+                                url?: string;
+                                previewUrl?: string;
+                                provider?: string;
+                                provider_metadata?: any;
+                                related?: {
+                                  data?: {
+                                    id?: number;
+                                    attributes?: object;
+                                  }[];
+                                };
+                                folder?: {
+                                  data?: {
+                                    id?: number;
+                                    attributes?: object;
+                                  };
+                                };
+                                folderPath?: string;
+                                /** @format date-time */
+                                createdAt?: string;
+                                /** @format date-time */
+                                updatedAt?: string;
+                                createdBy?: {
+                                  data?: {
+                                    id?: number;
+                                    attributes?: object;
+                                  };
+                                };
+                                updatedBy?: {
+                                  data?: {
+                                    id?: number;
+                                    attributes?: object;
+                                  };
+                                };
+                              };
+                            }[];
+                          };
+                          path?: string;
+                          /** @format date-time */
+                          createdAt?: string;
+                          /** @format date-time */
+                          updatedAt?: string;
+                          createdBy?: {
+                            data?: {
+                              id?: number;
+                              attributes?: object;
+                            };
+                          };
+                          updatedBy?: {
+                            data?: {
+                              id?: number;
+                              attributes?: object;
+                            };
+                          };
+                        };
+                      };
+                    };
+                    folderPath?: string;
+                    /** @format date-time */
+                    createdAt?: string;
+                    /** @format date-time */
+                    updatedAt?: string;
+                    createdBy?: {
+                      data?: {
+                        id?: number;
+                        attributes?: object;
+                      };
+                    };
+                    updatedBy?: {
+                      data?: {
+                        id?: number;
+                        attributes?: object;
+                      };
+                    };
+                  };
+                }[];
+              };
+              order_details?: {
+                data?: {
+                  id?: number;
+                  attributes?: object;
+                }[];
+              };
+              /** @format date-time */
+              createdAt?: string;
+              /** @format date-time */
+              updatedAt?: string;
+              createdBy?: {
+                data?: {
+                  id?: number;
+                  attributes?: object;
+                };
+              };
+              updatedBy?: {
+                data?: {
+                  id?: number;
+                  attributes?: object;
+                };
+              };
+            };
+          };
+        };
+        name?: string;
+        /** @format float */
+        price?: number;
+        /** @format float */
+        quantity?: number;
+        /** @format date-time */
+        createdAt?: string;
+        /** @format date-time */
+        updatedAt?: string;
+        createdBy?: {
+          data?: {
+            id?: number;
+            attributes?: object;
+          };
+        };
+        updatedBy?: {
+          data?: {
+            id?: number;
+            attributes?: object;
+          };
+        };
+      };
+    }[];
+  };
+  address?: string;
+  phone?: string;
+  name?: string;
+  /** @format date-time */
+  delivery_date?: string;
+  /** @format date-time */
+  createdAt?: string;
+  /** @format date-time */
+  updatedAt?: string;
+  createdBy?: {
+    data?: {
+      id?: number;
+      attributes?: object;
+    };
+  };
+  updatedBy?: {
+    data?: {
+      id?: number;
+      attributes?: object;
+    };
+  };
+}
+
+export interface OrderResponseDataObject {
+  id?: number;
+  attributes?: Order;
+}
+
+export interface OrderResponse {
+  data?: OrderResponseDataObject;
+  meta?: object;
+}
+
+export interface OrderDetailRequest {
+  data: {
+    /** @example "string or id" */
+    order_id?: number | string;
+    /** @example "string or id" */
+    product_id?: number | string;
+    name: string;
+    /** @format float */
+    price: number;
+    /** @format float */
+    quantity: number;
+  };
+}
+
+export interface OrderDetailListResponseDataItem {
+  id?: number;
+  attributes?: OrderDetail;
+}
+
+export interface OrderDetailListResponse {
+  data?: OrderDetailListResponseDataItem[];
+  meta?: {
+    pagination?: {
+      page?: number;
+      /** @min 25 */
+      pageSize?: number;
+      /** @max 1 */
+      pageCount?: number;
+      total?: number;
+    };
+  };
+}
+
+export interface OrderDetail {
+  order_id?: {
+    data?: {
+      id?: number;
+      attributes?: {
+        client?: {
+          data?: {
+            id?: number;
+            attributes?: {
+              name?: string;
+              address?: string;
+              /** @format date-time */
+              createdAt?: string;
+              /** @format date-time */
+              updatedAt?: string;
+              createdBy?: {
+                data?: {
+                  id?: number;
+                  attributes?: {
+                    firstname?: string;
+                    lastname?: string;
+                    username?: string;
+                    /** @format email */
+                    email?: string;
+                    resetPasswordToken?: string;
+                    registrationToken?: string;
+                    isActive?: boolean;
+                    roles?: {
+                      data?: {
+                        id?: number;
+                        attributes?: {
+                          name?: string;
+                          code?: string;
+                          description?: string;
+                          users?: {
+                            data?: {
+                              id?: number;
+                              attributes?: object;
+                            }[];
+                          };
+                          permissions?: {
+                            data?: {
+                              id?: number;
+                              attributes?: {
+                                action?: string;
+                                subject?: string;
+                                properties?: any;
+                                conditions?: any;
+                                role?: {
+                                  data?: {
+                                    id?: number;
+                                    attributes?: object;
+                                  };
+                                };
+                                /** @format date-time */
+                                createdAt?: string;
+                                /** @format date-time */
+                                updatedAt?: string;
+                                createdBy?: {
+                                  data?: {
+                                    id?: number;
+                                    attributes?: object;
+                                  };
+                                };
+                                updatedBy?: {
+                                  data?: {
+                                    id?: number;
+                                    attributes?: object;
+                                  };
+                                };
+                              };
+                            }[];
+                          };
+                          /** @format date-time */
+                          createdAt?: string;
+                          /** @format date-time */
+                          updatedAt?: string;
+                          createdBy?: {
+                            data?: {
+                              id?: number;
+                              attributes?: object;
+                            };
+                          };
+                          updatedBy?: {
+                            data?: {
+                              id?: number;
+                              attributes?: object;
+                            };
+                          };
+                        };
+                      }[];
+                    };
+                    blocked?: boolean;
+                    preferedLanguage?: string;
+                    /** @format date-time */
+                    createdAt?: string;
+                    /** @format date-time */
+                    updatedAt?: string;
+                    createdBy?: {
+                      data?: {
+                        id?: number;
+                        attributes?: object;
+                      };
+                    };
+                    updatedBy?: {
+                      data?: {
+                        id?: number;
+                        attributes?: object;
+                      };
+                    };
+                  };
+                };
+              };
+              updatedBy?: {
+                data?: {
+                  id?: number;
+                  attributes?: object;
+                };
+              };
+            };
+          };
+        };
+        /** @format float */
+        amount_price?: number;
+        order_details?: {
+          data?: {
+            id?: number;
+            attributes?: {
+              order_id?: {
+                data?: {
+                  id?: number;
+                  attributes?: object;
+                };
+              };
+              product_id?: {
+                data?: {
+                  id?: number;
+                  attributes?: {
+                    name?: string;
+                    /** @format float */
+                    price?: number;
+                    photo?: {
                       data?: {
                         id?: number;
                         attributes?: {
@@ -396,7 +793,90 @@ export interface Order {
                           folder?: {
                             data?: {
                               id?: number;
-                              attributes?: object;
+                              attributes?: {
+                                name?: string;
+                                pathId?: number;
+                                parent?: {
+                                  data?: {
+                                    id?: number;
+                                    attributes?: object;
+                                  };
+                                };
+                                children?: {
+                                  data?: {
+                                    id?: number;
+                                    attributes?: object;
+                                  }[];
+                                };
+                                files?: {
+                                  data?: {
+                                    id?: number;
+                                    attributes?: {
+                                      name?: string;
+                                      alternativeText?: string;
+                                      caption?: string;
+                                      width?: number;
+                                      height?: number;
+                                      formats?: any;
+                                      hash?: string;
+                                      ext?: string;
+                                      mime?: string;
+                                      /** @format float */
+                                      size?: number;
+                                      url?: string;
+                                      previewUrl?: string;
+                                      provider?: string;
+                                      provider_metadata?: any;
+                                      related?: {
+                                        data?: {
+                                          id?: number;
+                                          attributes?: object;
+                                        }[];
+                                      };
+                                      folder?: {
+                                        data?: {
+                                          id?: number;
+                                          attributes?: object;
+                                        };
+                                      };
+                                      folderPath?: string;
+                                      /** @format date-time */
+                                      createdAt?: string;
+                                      /** @format date-time */
+                                      updatedAt?: string;
+                                      createdBy?: {
+                                        data?: {
+                                          id?: number;
+                                          attributes?: object;
+                                        };
+                                      };
+                                      updatedBy?: {
+                                        data?: {
+                                          id?: number;
+                                          attributes?: object;
+                                        };
+                                      };
+                                    };
+                                  }[];
+                                };
+                                path?: string;
+                                /** @format date-time */
+                                createdAt?: string;
+                                /** @format date-time */
+                                updatedAt?: string;
+                                createdBy?: {
+                                  data?: {
+                                    id?: number;
+                                    attributes?: object;
+                                  };
+                                };
+                                updatedBy?: {
+                                  data?: {
+                                    id?: number;
+                                    attributes?: object;
+                                  };
+                                };
+                              };
                             };
                           };
                           folderPath?: string;
@@ -419,7 +899,12 @@ export interface Order {
                         };
                       }[];
                     };
-                    path?: string;
+                    order_details?: {
+                      data?: {
+                        id?: number;
+                        attributes?: object;
+                      }[];
+                    };
                     /** @format date-time */
                     createdAt?: string;
                     /** @format date-time */
@@ -439,7 +924,11 @@ export interface Order {
                   };
                 };
               };
-              folderPath?: string;
+              name?: string;
+              /** @format float */
+              price?: number;
+              /** @format float */
+              quantity?: number;
               /** @format date-time */
               createdAt?: string;
               /** @format date-time */
@@ -459,12 +948,15 @@ export interface Order {
             };
           }[];
         };
+        address?: string;
+        phone?: string;
+        name?: string;
+        /** @format date-time */
+        delivery_date?: string;
         /** @format date-time */
         createdAt?: string;
         /** @format date-time */
         updatedAt?: string;
-        /** @format date-time */
-        publishedAt?: string;
         createdBy?: {
           data?: {
             id?: number;
@@ -478,19 +970,23 @@ export interface Order {
           };
         };
       };
-    }[];
+    };
   };
+  product_id?: {
+    data?: {
+      id?: number;
+      attributes?: object;
+    };
+  };
+  name: string;
   /** @format float */
-  custom_price?: number;
+  price: number;
   /** @format float */
-  final_price?: number;
-  has_custom_price?: boolean;
+  quantity: number;
   /** @format date-time */
   createdAt?: string;
   /** @format date-time */
   updatedAt?: string;
-  /** @format date-time */
-  publishedAt?: string;
   createdBy?: {
     data?: {
       id?: number;
@@ -505,13 +1001,13 @@ export interface Order {
   };
 }
 
-export interface OrderResponseDataObject {
+export interface OrderDetailResponseDataObject {
   id?: number;
-  attributes?: Order;
+  attributes?: OrderDetail;
 }
 
-export interface OrderResponse {
-  data?: OrderResponseDataObject;
+export interface OrderDetailResponse {
+  data?: OrderDetailResponseDataObject;
   meta?: object;
 }
 
@@ -521,6 +1017,7 @@ export interface ProductRequest {
     /** @format float */
     price?: number;
     photo?: (number | string)[];
+    order_details?: (number | string)[];
   };
 }
 
@@ -773,12 +1270,182 @@ export interface Product {
       };
     }[];
   };
+  order_details?: {
+    data?: {
+      id?: number;
+      attributes?: {
+        order_id?: {
+          data?: {
+            id?: number;
+            attributes?: {
+              client?: {
+                data?: {
+                  id?: number;
+                  attributes?: {
+                    name?: string;
+                    address?: string;
+                    /** @format date-time */
+                    createdAt?: string;
+                    /** @format date-time */
+                    updatedAt?: string;
+                    createdBy?: {
+                      data?: {
+                        id?: number;
+                        attributes?: object;
+                      };
+                    };
+                    updatedBy?: {
+                      data?: {
+                        id?: number;
+                        attributes?: object;
+                      };
+                    };
+                  };
+                };
+              };
+              /** @format float */
+              amount_price?: number;
+              order_details?: {
+                data?: {
+                  id?: number;
+                  attributes?: object;
+                }[];
+              };
+              address?: string;
+              phone?: string;
+              name?: string;
+              /** @format date-time */
+              delivery_date?: string;
+              /** @format date-time */
+              createdAt?: string;
+              /** @format date-time */
+              updatedAt?: string;
+              createdBy?: {
+                data?: {
+                  id?: number;
+                  attributes?: object;
+                };
+              };
+              updatedBy?: {
+                data?: {
+                  id?: number;
+                  attributes?: object;
+                };
+              };
+            };
+          };
+        };
+        product_id?: {
+          data?: {
+            id?: number;
+            attributes?: {
+              name?: string;
+              /** @format float */
+              price?: number;
+              photo?: {
+                data?: {
+                  id?: number;
+                  attributes?: {
+                    name?: string;
+                    alternativeText?: string;
+                    caption?: string;
+                    width?: number;
+                    height?: number;
+                    formats?: any;
+                    hash?: string;
+                    ext?: string;
+                    mime?: string;
+                    /** @format float */
+                    size?: number;
+                    url?: string;
+                    previewUrl?: string;
+                    provider?: string;
+                    provider_metadata?: any;
+                    related?: {
+                      data?: {
+                        id?: number;
+                        attributes?: object;
+                      }[];
+                    };
+                    folder?: {
+                      data?: {
+                        id?: number;
+                        attributes?: object;
+                      };
+                    };
+                    folderPath?: string;
+                    /** @format date-time */
+                    createdAt?: string;
+                    /** @format date-time */
+                    updatedAt?: string;
+                    createdBy?: {
+                      data?: {
+                        id?: number;
+                        attributes?: object;
+                      };
+                    };
+                    updatedBy?: {
+                      data?: {
+                        id?: number;
+                        attributes?: object;
+                      };
+                    };
+                  };
+                }[];
+              };
+              order_details?: {
+                data?: {
+                  id?: number;
+                  attributes?: object;
+                }[];
+              };
+              /** @format date-time */
+              createdAt?: string;
+              /** @format date-time */
+              updatedAt?: string;
+              createdBy?: {
+                data?: {
+                  id?: number;
+                  attributes?: object;
+                };
+              };
+              updatedBy?: {
+                data?: {
+                  id?: number;
+                  attributes?: object;
+                };
+              };
+            };
+          };
+        };
+        name?: string;
+        /** @format float */
+        price?: number;
+        /** @format float */
+        quantity?: number;
+        /** @format date-time */
+        createdAt?: string;
+        /** @format date-time */
+        updatedAt?: string;
+        createdBy?: {
+          data?: {
+            id?: number;
+            attributes?: object;
+          };
+        };
+        updatedBy?: {
+          data?: {
+            id?: number;
+            attributes?: object;
+          };
+        };
+      };
+    }[];
+  };
   /** @format date-time */
   createdAt?: string;
   /** @format date-time */
   updatedAt?: string;
-  /** @format date-time */
-  publishedAt?: string;
   createdBy?: {
     data?: {
       id?: number;
@@ -2094,8 +2761,8 @@ export interface UsersPermissionsRole {
   name?: string;
   description?: string;
   type?: string;
-  createdAt?: string;
-  updatedAt?: string;
+  createdAt?: datetime;
+  updatedAt?: datetime;
 }
 
 export interface UsersPermissionsUser {
@@ -2112,9 +2779,9 @@ export interface UsersPermissionsUser {
   /** @example false */
   blocked?: boolean;
   /** @example "2022-06-02T08:32:06.258Z" */
-  createdAt?: string;
+  createdAt?: datetime;
   /** @example "2022-06-02T08:32:06.267Z" */
-  updatedAt?: string;
+  updatedAt?: datetime;
 }
 
 export interface UsersPermissionsUserRegistration {
@@ -2504,6 +3171,121 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     deleteOrdersId: (id: number, params: RequestParams = {}) =>
       this.request<number, Error>({
         path: `/orders/${id}`,
+        method: "DELETE",
+        secure: true,
+        format: "json",
+        ...params,
+      }),
+  };
+  orderDetails = {
+    /**
+     * No description
+     *
+     * @tags Order-detail
+     * @name GetOrderDetails
+     * @request GET:/order-details
+     * @secure
+     */
+    getOrderDetails: (
+      query?: {
+        /** Sort by attributes ascending (asc) or descending (desc) */
+        sort?: string;
+        /** Return page/pageSize (default: true) */
+        "pagination[withCount]"?: boolean;
+        /** Page number (default: 0) */
+        "pagination[page]"?: number;
+        /** Page size (default: 25) */
+        "pagination[pageSize]"?: number;
+        /** Offset value (default: 0) */
+        "pagination[start]"?: number;
+        /** Number of entities to return (default: 25) */
+        "pagination[limit]"?: number;
+        /** Fields to return (ex: title,author) */
+        fields?: string;
+        /** Relations to return */
+        populate?: string;
+        /** Filters to apply */
+        filters?: object;
+        /** Locale to apply */
+        locale?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<OrderDetailListResponse, Error>({
+        path: `/order-details`,
+        method: "GET",
+        query: query,
+        secure: true,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags Order-detail
+     * @name PostOrderDetails
+     * @request POST:/order-details
+     * @secure
+     */
+    postOrderDetails: (data: OrderDetailRequest, params: RequestParams = {}) =>
+      this.request<OrderDetailResponse, Error>({
+        path: `/order-details`,
+        method: "POST",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags Order-detail
+     * @name GetOrderDetailsId
+     * @request GET:/order-details/{id}
+     * @secure
+     */
+    getOrderDetailsId: (id: number, params: RequestParams = {}) =>
+      this.request<OrderDetailResponse, Error>({
+        path: `/order-details/${id}`,
+        method: "GET",
+        secure: true,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags Order-detail
+     * @name PutOrderDetailsId
+     * @request PUT:/order-details/{id}
+     * @secure
+     */
+    putOrderDetailsId: (id: number, data: OrderDetailRequest, params: RequestParams = {}) =>
+      this.request<OrderDetailResponse, Error>({
+        path: `/order-details/${id}`,
+        method: "PUT",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags Order-detail
+     * @name DeleteOrderDetailsId
+     * @request DELETE:/order-details/{id}
+     * @secure
+     */
+    deleteOrderDetailsId: (id: number, params: RequestParams = {}) =>
+      this.request<number, Error>({
+        path: `/order-details/${id}`,
         method: "DELETE",
         secure: true,
         format: "json",

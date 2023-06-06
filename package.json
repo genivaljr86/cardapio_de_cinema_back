@@ -1,5 +1,5 @@
 {
-  "name": "back",
+  "name": "back-2",
   "private": true,
   "version": "0.1.0",
   "description": "A Strapi application",
@@ -7,25 +7,20 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi",
-    "documentation": " npx swagger-typescript-api -p ./src/extensions/documentation/documentation/1.0.0/full_documentation.json  -o ../front/src -n myApi.ts --axios"
+    "strapi": "strapi"
   },
   "devDependencies": {},
   "dependencies": {
-    "@strapi/plugin-documentation": "^4.10.1",
-    "@strapi/plugin-graphql": "4.10.2",
-    "@strapi/plugin-i18n": "4.10.2",
-    "@strapi/plugin-users-permissions": "4.10.2",
-    "@strapi/strapi": "4.10.2",
-    "better-sqlite3": "8.0.1",
-    "strapi-plugin-duplicate-button": "^1.1.7",
-    "strapi-plugin-entity-relationship-chart": "^4.1.0"
+    "@strapi/strapi": "4.10.7",
+    "@strapi/plugin-users-permissions": "4.10.7",
+    "@strapi/plugin-i18n": "4.10.7",
+    "better-sqlite3": "8.0.1"
   },
   "author": {
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "b2ae73a3-c841-4e80-8322-b9c667d633ec"
+    "uuid": "e182805b-05c9-4c59-ad86-8a98ce8e9362"
   },
   "engines": {
     "node": ">=14.19.1 <=18.x.x",

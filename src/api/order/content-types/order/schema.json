@@ -36,7 +36,17 @@
       "type": "string"
     },
     "delivery_date": {
-      "type": "date"
+      "type": "datetime"
+    },
+    "custom_delivery": {
+      "type": "boolean",
+      "default": false
+    },
+    "delivery_tax": {
+      "type": "decimal"
+    },
+    "subtotal_price": {
+      "type": "decimal"
     }
   }
 }

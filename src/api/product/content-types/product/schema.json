@@ -34,6 +34,9 @@
       "relation": "oneToMany",
       "target": "api::order-detail.order-detail",
       "mappedBy": "product_id"
+    },
+    "description": {
+      "type": "richtext"
     }
   }
 }
